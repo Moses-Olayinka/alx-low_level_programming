@@ -10,11 +10,9 @@ int i;
 i = 0;		
 while (i < 10)
 {
-ch = 'a';
-while (ch <= 'z')
+for (ch = 'a'; ch <= 'z'; ch++)
 {
 _putchar(ch);
- ch++;
 }
 _putchar('\n');
 i++;
