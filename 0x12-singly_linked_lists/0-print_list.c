@@ -7,10 +7,9 @@
  *
  * Return: the number of nodes
  */
-
 size_t print_list(const list_t *h)
 {
-	size_t counter = 0;
+	size_t increase = 0;
 
 
 	while (h != NULL)
@@ -20,9 +19,9 @@ size_t print_list(const list_t *h)
 		else
 			printf("[%u] %s\n", h->len, h->str);
 
-		counter++;
 		h = h->next;
+		increase++;
 	}
 
-	return (counter);
+	return (increase);
 }
