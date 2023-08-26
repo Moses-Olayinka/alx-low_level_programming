@@ -1,13 +1,13 @@
 #include <stdio.h>
 #include "lists.h"
 
-/**
- * printThis_before_main - prior to main function, executes this function
- * Note: made possible by previous declaration of "__attribute__ ((constructor))"
- */
-
-void __attribute__ ((constructor)) printThis_before_main()
-{
+void printIntro() {
 	printf("You're beat! and yet, you must allow,\n");
 	printf("I bore my house upon my back!\n");
+}
+
+int main() {
+	printIntro();
+	// Rest of your main function code goes here
+	return 0;
 }
