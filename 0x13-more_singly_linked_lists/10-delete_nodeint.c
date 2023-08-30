@@ -1,46 +1,56 @@
 #include "lists.h"
 
 /**
- * delete_nodeint_at_index - deletes a node in a linked list at a specified index
- * @head: pointer to the first element in the list
+ * delete_nodeint_at_index - deletes the node at certian index
+ * @head: the head node
  * @index: index of the node to delete
  *
- * Return: 1 (Success), or -1 (Fail)
+ * Return: modified singly linked list
  */
 
 int delete_nodeint_at_index(listint_t **head, unsigned int index)
 {
-	// Declare temporary pointers and an index counter
-	listint_t *temp = *head;  // Temporary pointer for traversal
-	listint_t *current = NULL;  // Pointer to the node to be deleted
-	unsigned int i = 0;  // Index counter for traversal
+	unsigned int i = 0;
+	listint_t *temp, *prev;
 
-	// Check if the linked list is empty
 	if (*head == NULL)
-		return (-1);  // Return -1 to indicate an error
+		return (-1);
 
-	// Check if the index is 0 (deleting the first node)
+	prev = *head;
+	temp = *head;
+
 	if (index == 0)
 	{
-		*head = (*head)->next;  // Update the head to the next node
-		free(temp);  // Free the memory of the original head
-		return (1);  // Return 1 to indicate success
+		*head = temp->next;
+		free(temp);
+		return (1);
 	}
-
-	// Traverse the list to the node before the one to be deleted
-	while (i < index - 1)
+	else
 	{
-		// Check if the traversal pointer is NULL or the next node is NULL
-		if (!temp || !(temp->next))
-			return (-1);  // Return -1 to indicate an error
-		temp = temp->next;  // Move the traversal pointer
-		i++;  // Increment the index counter
+		/**
+		 * keep looping while i < node before the target index
+		 * && as long as the prev != the end || pointing to null
+		 * in case of over size index
+		 *
+		 * You can also get its length and check first as an
+		 * alternative
+		 */
+		while (i < index - 1 && prev != NULL)
+		{
+			prev = prev->next;
+			i++;
+		}
+		/**
+		 * takes care of index > linked list size
+		 *  when the previous node = last node
+		 */
+		if (i != (index - 1) || prev->next == NULL)
+			return (-1);
+
+		temp = prev->next;
+		prev->next = temp->next;
+		free(temp);
 	}
 
-	// Store the node to be deleted and its next node
-	current = temp->next;
-	temp->next = current->next;  // Update the previous node's next pointer
-	free(current);  // Free the memory of the deleted node
-
-	return (1);// Return 1 to indicate success    
+	return (1);
 }
