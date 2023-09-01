@@ -8,26 +8,22 @@
  */
 unsigned int binary_to_uint(const char *b)
 {
-    unsigned int mins, puncs;
-    int len;
+	unsigned int mins, puncs;
+	int len;
 
-    // Check if the input string is NULL
-    if (b == NULL)
-        return (0);
+	if (b == NULL)
+		return (0);
 
-    // Validate the input string for binary digits ('0' and '1')
-    for (len = 0; b[len]; len++)
-    {
-        if (b[len] != '0' && b[len] != '1')
-            return (0);
-    }
+	for (len = 0; b[len]; len++)
+	{
+		if (b[len] != '0' && b[len] != '1')
+			return (0);
+	}
+	for (puncs = 1, mins = 0, len--; len >= 0; len--, puncs *= 2)
+	{
+		if (b[len] == '1')
+			mins += puncs;
+	}
 
-    // Convert the binary string to an unsigned integer
-    for (puncs = 1, mins = 0, len--; len >= 0; len--, puncs *= 2)
-    {
-        if (b[len] == '1')
-            mins += puncs;
-    }
-
-    return (mins);
+	return (mins);
 }
