@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * To Read & Print a Textfile - reads a text file and prints the letters
+ * To Read & Print a textfile - reads a text file and prints the letters
  * @filename: D fileName
  * @letters: Numbers of printed letters.
  *
